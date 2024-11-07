@@ -10,7 +10,7 @@
 <body>
   <div id="todo">
     <header>
-      <h1>Todo List - 수정 :)</h1>
+      <h1>Todo List - 삭제,완성 :)</h1>
       <p>파일 경로: <span id="filepath"></span></p>
     </header>
     <div id="main">
@@ -54,7 +54,7 @@
     document.querySelector('#filepath').textContent = `ch${document.URL.split('/ch')[1]}index.html`;
 
     // 샘플 목록
-    const itemList = [
+    let itemList = [
       { no: 1, title: '두부', done: true },
       { no: 2, title: '계란', done: false },
       { no: 3, title: '라면', done: true },
@@ -185,31 +185,48 @@
         const sElem = document.createElement('s')
         sElem.appendChild(titleSpanElem.firstChild) //appendChild는 복사가 아니라 이동..
         titleSpanElem.appendChild(sElem)
-      } else
+      } else {
         //  <span><s>샘플2</s></span>  =>  <span>샘플2</span>
         titleSpanElem.appendChild(titleSpanElem.firstChild.firstChild)
-      titleSpanElem.firstChild.remove()
+        titleSpanElem.firstChild.remove()
+      }
+
     }
 
     // 할일 삭제
+    // function deleteItem(no) {
+    //   const newArray = itemList.filter(item => item.no !== no);
+    //   const selectedLiElem = document.querySelector(`.todolist > li[data-no="${no}"]`)
+    //   console.log(selectedLiElem)
+    //   if (selectedLiElem) {
+    //     todolistElem.innerHTML = ''
+    //     console.log(newArray)
+    //     newArray.forEach((item, index) => {
+    //       item.no = index + 1;
+    //       selectedLiElem.remove()
+    //       const liElem = getTodoItemElem(item)
+    //       todolistElem.appendChild(liElem)
+    //     });
+
+    //   }
+    //   console.log(itemList) ===> 하지만 이 방법은 비효율적임, 배열 자체를 새로 다시 렌더링해야함 
+    // 성능이 똥이다 . 다시!
+    // }
+
+
     function deleteItem(no) {
-      const newArray = itemList.filter(item => item.no !== no);
+      //itemList를 const에서 let으로 ..
       const selectedLiElem = document.querySelector(`.todolist > li[data-no="${no}"]`)
-      if (selectedLiElem) {
-        todolistElem.innerHTML = ''
-        console.log(newArray)
-        newArray.forEach((item, index) => {
-          item.no = index + 1;
-          selectedLiElem.remove()
-          const liElem = getTodoItemElem(item);
-          todolistElem.appendChild(liElem)
-        });
-
-      }
+      itemList = itemList.filter(item => item.no !== no)
+      selectedLiElem.remove()
       console.log(itemList)
-
+      todolistElem.innerHTML = ''
+      itemList.forEach((item, index) => {
+        item.no = index + 1
+        const liElem = getTodoItemElem(item)
+        todolistElem.appendChild(liElem)
+      })
     }
-
   </script>
 </body>
 

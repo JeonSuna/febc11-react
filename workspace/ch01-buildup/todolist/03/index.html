@@ -184,10 +184,12 @@
         const sElem = document.createElement('s')
         sElem.appendChild(titleSpanElem.firstChild) //appendChild는 복사가 아니라 이동..
         titleSpanElem.appendChild(sElem)
-      } else
+      } else {
         //  <span><s>샘플2</s></span>  =>  <span>샘플2</span>
         titleSpanElem.appendChild(titleSpanElem.firstChild.firstChild)
-      titleSpanElem.firstChild.remove()
+        titleSpanElem.firstChild.remove()
+      }
+
     }
 
     // 할일 삭제
