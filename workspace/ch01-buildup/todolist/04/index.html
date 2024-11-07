@@ -60,16 +60,16 @@
       { no: 3, title: '라면', done: true },
     ];
     //ul요소
+
     const todolistElem = document.querySelector('.todolist');
     //기존 목록 삭제 
+
+
     while (todolistElem.firstChild) {
       todolistElem.firstChild.remove()
     }
-
-    //itemList 배열의 각 Todo 아이템을 화면에 추가
     itemList.forEach((item, index) => {
       const liElem = getTodoItemElem(item)
-      // todolistElem.innerHTML += liElem
       todolistElem.appendChild(liElem)
     })
 
