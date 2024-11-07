@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Counter</title>
+</head>
+
+<body>
+  <!-- <div id="app">
+    <header>
+      <h1>Counter - HTML + JS</h1>
+      <p>파일 경로: <span id="filepath"></span></p>
+    </header>
+    <div id="counter">
+      <button type="button" onclick="handleDown()">-</button>
+      <button type="button" onclick="handleReset(event)">0</button>
+      <button type="button" onclick="handleUp()">+</button>
+      <span>0</span>
+    </div>
+  </div> -->
+  <div id="root"></div>
+  <script type="module">
+    import Yong from './yong.js'
+
+
+    function Header() {
+      return (Yong.createElement('header', null,
+        Yong.createElement('h1', null, 'Counter - 라이브러리 사용'),
+        Yong.createElement('p', null, '파일 경로:',
+          Yong.createElement('span', { id: 'filepath' }, `ch${document.URL.split('/ch')[1]}index.html`))))
+    }
+    function Counter() {
+      let count = 0;
+      const handleDown = () => {
+        count--;
+      };
+      const handleUp = () => {
+        count++;
+      };
+      const handleReset = event => {
+        count = 0;
+      };
+      return (Yong.createElement('div', { id: 'counter' },
+        Yong.createElement('button', { type: 'button', onclick: handleDown }, '-'),
+        Yong.createElement('button', { type: 'button', onclick: (event) => handleReset(event) }, '0'),
+        Yong.createElement('button', { type: 'button', onclick: handleUp }, '+'),
+        Yong.createElement('span', null, count)))
+    }
+    //애플리케이션 시작점
+    function App() {
+      return (
+        Yong.createElement('div', { id: 'app' }, Header, Counter)
+      )
+    }
+
+    //./yong.js에서 Yong라는 이름의 모듈이나 클래스를 가져옴 
+    //즉js에서 내보낸 값인 export 값인 yong를 Yong값으로 가져온다
+
+    Yong.createRoot(document.getElementById('root')).render(App)
+
+  </script>
+
+
+
+</body>
+
+</html>

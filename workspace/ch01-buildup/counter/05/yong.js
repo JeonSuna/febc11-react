@@ -6,13 +6,21 @@ const yong = {
         const elem = document.createElement(tag)
         if (props) {
             for (const attrName in props) {
-                elem.setAttribute(attrName, props[attrName])
+                const value = props[attrName]
+                if (attrName.startsWith('on')) {
+                    elem.addEventListener(attrName.toLowerCase().substring(2), value)
+                } else {
+                    elem.setAttribute(attrName, value)
+                }
             }
         }
+
         // 자식 노드 추가 
         for (let child of children) {
             if (typeof child === 'string' || typeof child === 'number') {
                 child = document.createTextNode(child)
+            } else if (typeof child === 'function') {
+                child = child()
             }
             elem.appendChild(child)
         }
@@ -24,8 +32,8 @@ const yong = {
     createRoot: (rootNode) => { //호출하면 객체 리턴 
         return {
             //루트노드 하위에 지정한 함수를 실행해서 받은 컴포넌트를 렌더링 한다.
-            render(appFn) { //appFn함수가 App으로 전달됨
-                rootNode.appendChild(appFn()) //App반환요소를 appendChild
+            render(appFn) {
+                rootNode.appendChild(appFn())
             }
         }
     }

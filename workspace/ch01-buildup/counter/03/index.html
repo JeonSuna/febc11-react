@@ -8,21 +8,9 @@
 </head>
 
 <body>
-  <!-- <div id="app">
-    <header>
-      <h1>Counter - HTML + JS</h1>
-      <p>파일 경로: <span id="filepath"></span></p>
-    </header>
-    <div id="counter">
-      <button type="button" onclick="handleDown()">-</button>
-      <button type="button" onclick="handleReset(event)">0</button>
-      <button type="button" onclick="handleUp()">+</button>
-      <span>0</span>
-    </div>
-  </div> -->
   <div id="root"></div>
   <script type="module">
-    // module은 defer 속성을 지정한 것처럼 지연 실행됨
+    // module은 defer 속성을 지정한 것처럼 지연 실행됨, 즉 DOM요소가 준비되지 않은 다음에 실행 될 일이 없음
     // HTML 파싱을 멈추지 않고, HTML 파싱이 끝난 이후에 실행됨
     // module 끼리는 선언한 순서대로 실행됨
     import Yong from './yong.js'
