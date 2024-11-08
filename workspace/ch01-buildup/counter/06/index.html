@@ -32,33 +32,31 @@
           Yong.createElement('span', { id: 'filepath' }, `ch${document.URL.split('/ch')[1]}index.html`))))
     }
     function Counter() {
-      let count = 0;
+      // let count = 0;
+      const [count, setCount] = Yong.useState(10) //use함수 만들고 값 전달하면 배열 반환
       const handleDown = () => {
         //TODO 데이터 갱신
-        count--;
+        setCount(count - 1)
         //TODO 화면 갱신
-        const counterSPan = document.querySelector('#counter > span')
-        counterSPan.textContent = count
+
       };
       const handleUp = () => {
         //TODO 데이터 갱신 
-        count++;
+        setCount(count + 1)
         //TODO 화면 갱신
-        const counterSPan = document.querySelector('#counter > span')
-        counterSPan.textContent = count
+
       };
       const handleReset = event => {
         //TODO 데이터 갱신 
-        count = 0;
+        setCount(0)
         //TODO 화면 갱신
-        const counterSPan = document.querySelector('#counter > span')
-        counterSPan.textContent = count
+
       };
       return (Yong.createElement('div', { id: 'counter' },
         Yong.createElement('button', { type: 'button', onclick: handleDown }, '-'),
         Yong.createElement('button', { type: 'button', onclick: (event) => handleReset(event) }, '0'),
         Yong.createElement('button', { type: 'button', onclick: handleUp }, '+'),
-        Yong.createElement('span', null, 0)))
+        Yong.createElement('span', null, count)))
     }
     //애플리케이션 시작점
     function App() {
