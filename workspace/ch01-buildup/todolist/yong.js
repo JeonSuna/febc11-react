@@ -66,9 +66,14 @@ const yong = (() => {
         function setValue(newValue) {
             const oldValue = _stateValue; // 10
             _stateValue = newValue; // 11
+            console.log("상태 변경되지 않음: ", oldValue, newValue)
 
             // 두 값이 같은지 비교해서 같지 않을 경우에(상태가 변경된 경우) 리렌더링한다.
+            //객체일때 같은 메모리 주소를 가지고 있으면 true
+            //두 값이 모두 null or undefined이면 true
+            // 두값이 모두 true거나 false면 true
             if (!Object.is(oldValue, newValue)) {
+                console.log('리렌더링')
                 _root.render();
             }
         }
