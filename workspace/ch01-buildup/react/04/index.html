@@ -33,17 +33,40 @@
       )
     }
 
-    function TodoInput() {
+    function TodoInput({ addItem }) {
+      const [title, setTitle] = React.useState('')
+      const [count, setCount] = React.useState(4)
+
+      function handleAdd() {
+        if (title.trim() !== '') {
+          const item = { _id: count, title, done: false }
+          addItem(item)
+          setTitle('')
+          setCount(count + 1)
+        }
+      }
+      function handleKeyUp(event) {
+
+        if (event.key === "Enter") handleAdd()
+
+      }
+
       return (
         <div className="todoinput">
-          <input type="text" autoFocus />
-          <button type="button">추가</button>
+          <input
+            type="text"
+            value={title}
+            autoFocus
+            onKeyUp={handleKeyUp}
+            onChange={event => setTitle(event.target.value)}
+          />
+          <button type="button" onClick={handleAdd}>추가</button>
         </div>
       )
     }
 
     function TodoList({ itemList }) {
-      console.log(itemList)
+
       const list = itemList.map((item) => <TodoItem key={item._id} item={item} />)
       return (
         <ul className="todolist">
@@ -60,15 +83,15 @@
       </li>)
     }
 
-    function Todo(props) {
+    function Todo({ itemList, addItem }) {
       return (
         <div id="main">
           <div id="container">
             <ul>
               <li>
                 <h2>쇼핑 목록</h2>
-                <TodoInput />
-                <TodoList itemList={props.itemList} />
+                <TodoInput addItem={addItem} />
+                <TodoList itemList={itemList} />
               </li>
             </ul>
           </div>
@@ -86,15 +109,21 @@
 
     function App() {
       // 샘플 목록
-      const itemList = [
+      const [itemList, setItemList] = React.useState([
         { _id: 1, title: '두부', done: true },
         { _id: 2, title: '계란', done: false },
         { _id: 3, title: '라면', done: true },
-      ];
+      ]);
+      const addItem = (item) => {
+        const newItemList = [...itemList, item]
+        setItemList(newItemList) //set 함수를 통한 상태관리
+        console.log(itemList)
+        console.log(newItemList)
+      }
       return (
         <div id="todo">
           <Header />
-          <Todo itemList={itemList} />
+          <Todo itemList={itemList} addItem={addItem} />
           <Footer />
         </div>
       )
