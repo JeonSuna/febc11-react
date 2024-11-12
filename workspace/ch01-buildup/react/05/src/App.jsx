@@ -3,7 +3,8 @@ import Header from "./components/Header";
 import Todo from "./pages/Todo";
 import Footer from "./components/Footer";
    function App() {
-      // 샘플 목록
+     // 샘플 목록
+     // state를 만든곳에서 상태관련 코드 (set)은 넘겨주지 말고 한 함수에서 실행하자 
       const [itemList, setItemList] =useState([
         { _id: 1, title: '두부', done: true },
         { _id: 2, title: '계란', done: false },
