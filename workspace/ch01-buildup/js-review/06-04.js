@@ -29,11 +29,11 @@ function f2(f1Result) {
 }
 
 function test() {
-    f1().then((f1Result) => {
-        f2(f1Result).
-            then((result) => { console.log('8', result) }).
-            catch((err) => { })
-    }).catch((err) => { })
+    f1().then(f2)
+        .then(result => {
+            console.log('8', result)
+        })
+        .catch((err) => { })
 
 }
 
