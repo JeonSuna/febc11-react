@@ -9,6 +9,8 @@ function f1() {
   return (`f1의 결과물`);
 }
 
+
+
 function f2(f1Result) {
   console.log(`5. ${f1Result}로 f2 작업 시작.`);
   console.log(`6. f2 작업중...`);

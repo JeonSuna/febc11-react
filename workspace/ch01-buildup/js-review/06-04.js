@@ -37,6 +37,8 @@ function test() {
 
 }
 
+console.log('')
+
 console.log('1. 테스트 시작.');
 test();
 console.log('9. 테스트 완료.');
