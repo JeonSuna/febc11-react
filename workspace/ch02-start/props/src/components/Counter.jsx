@@ -20,9 +20,7 @@ function Counter() {
       <Button color="red" onClick={handleDown}>
         -
       </Button>
-      <Button color="yellow" onClick={(event) => handleReset(event)}>
-        0
-      </Button>
+      <Button onClick={(event) => handleReset(event)}>0</Button>
       <Button color="blue" onClick={handleUp}>
         +
       </Button>
