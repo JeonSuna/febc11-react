@@ -1,7 +1,12 @@
 import './Button.css';
-function Button({ children, type = 'button', onClick }) {
+function Button({ children, type = 'button', onClick, color }) {
   return (
-    <button className="rounded-button" type={type} onClick={onClick}>
+    <button
+      className="rounded-button"
+      style={{ backgroundColor: color }}
+      type={type}
+      onClick={onClick}
+    >
       {children}
     </button>
   );
