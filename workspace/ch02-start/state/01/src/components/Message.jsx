@@ -3,11 +3,13 @@ import { useState } from 'react';
 let count = 0;
 export default function Message() {
   const [msg, setMsg] = useState('');
+  const [count, setCount] = useState(0);
 
   const handleChange = (event) => {
     const inputMsg = event.target.value;
     setMsg(inputMsg);
-    count++;
+    console.log('render');
+    setCount((elem) => elem + 1);
   };
   return (
     <div>
