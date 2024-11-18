@@ -60,7 +60,7 @@ function App() {
     //user를 복사한 새로운 객체(draft)를 만들어서 반환한다
     const newState = produce(user, (draft) => {
       const address = draft.extra.addressBook.find(
-        (address) => address.id === Number(event.target.name)
+        (address) => address.id === Number(event.target.name) //조건 만족하는 첫번쨰 객체만 반환
       );
       address.value = event.target.value;
       console.log(user);
