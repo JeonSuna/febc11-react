@@ -23,28 +23,80 @@ function App() {
         {
           id: 2,
           name: '집',
-          value: '서울시 강동구 성내동 234', //주소 수정 화면 만들기
+          value: '서울시 강동구 성내동 234',
         },
       ],
     },
   });
 
-  const handleAddressChange = () => {};
+  const handleAddressChange = (event) => {
+    //상태의 불변성이 지켜지지 않음
+    // const address = user.extra.addressBook.find(
+    //   (address) => address.id === Number(event.target.name)
+    // );
+    // address.value = event.target.value;
+    // const newState = { ...user };
+
+    //상태의 불변성을 지키기 위해 복잡한 추가 작업 필요
+
+    const newAddressBook = user.extra.addressBook.map((address) => {
+      if (address.id === Number(event.target.name)) {
+        return { ...address, value: event.target.value };
+      } else {
+        return address;
+      }
+    });
+
+    const newState = {
+      ...user,
+      extra: {
+        ...user.extra,
+        addressBook: newAddressBook,
+      },
+    };
+    //회사 주소가 변경될 경우
+    console.log('user', user === newState); //f
+    console.log('user.extra', user.extra === newState.extra); //f
+    console.log(
+      'user.extra.addressBook',
+      user.extra.addressBook === newState.extra.addressBook
+    ); //f
+    console.log(
+      '회사',
+      user.extra.addressBook[0] === newState.extra.addressBook[0]
+    ); //f
+    console.log(
+      '집',
+      user.extra.addressBook[1] === newState.extra.addressBook[1]
+    ); //t
+    console.log(
+      '회사 주소',
+      user.extra.addressBook[0].value === newState.extra.addressBook[0].value
+    ); //f
+    console.log(
+      '집 주소',
+      user.extra.addressBook[1].value === newState.extra.addressBook[1].value
+    ); //t
+    console.log('기존 회사 주소', user.extra.addressBook[0].value);
+
+    setUser(newState);
+  };
+
   return (
     <>
       <h2>04 상태관리 대상이 복합 객체일 경우 불변성 관리</h2>
       <p>
-        이메일:{user.email}
+        이메일: {user.email}
         <br />
-        이름:{user.name}
+        이름: {user.name}
         <br />
-        주소:{user.address}
+        전화번호: {user.phone}
         <br />
       </p>
       <ul>
         {user.extra.addressBook?.map((address) => (
           <li key={address.id}>
-            {address.name}:{address.value}
+            {address.name}: {address.value}
           </li>
         ))}
       </ul>
