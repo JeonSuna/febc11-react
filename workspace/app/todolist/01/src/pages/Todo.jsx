@@ -1,7 +1,7 @@
 import TodoInput from '@pages/Todoinput';
 import TodoList from '@pages/TodoList';
 
-function Todo({ itemList, addItem }) {
+function Todo({ itemList, addItem, toggleDone, deleteItem }) {
   return (
     <div id="main">
       <div id="container">
@@ -9,7 +9,11 @@ function Todo({ itemList, addItem }) {
           <li>
             <h2>쇼핑 목록</h2>
             <TodoInput addItem={addItem} />
-            <TodoList itemList={itemList} />
+            <TodoList
+              itemList={itemList}
+              toggleDone={toggleDone}
+              deleteItem={deleteItem}
+            />
           </li>
         </ul>
       </div>

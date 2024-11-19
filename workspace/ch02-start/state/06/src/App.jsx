@@ -17,6 +17,9 @@ function App() {
     watch,
     formState: { errors }, //err메세지 출력
   } = useForm({
+    mode: 'onSubmit', //최초 검증 시점 정의,default onsubmit
+    reValidateMode: 'onChange', //재검증 시점, default onChange
+    criteriaMode: 'all', // errors객체에 첫 오류 포함하거나
     defaultValues: {
       name: '',
       email: '',
@@ -28,6 +31,7 @@ function App() {
     //브라우저의 기본 동작 취소 (submit 동작 취소)
     console.log('서버에 전송', user);
   }
+  console.log(errors); //all로하면 2개의 에러 메세지가 넘어옴
   return (
     <>
       <h1>06 회원가입 입력값 검증(feat.react-hook-form)</h1>
@@ -41,6 +45,10 @@ function App() {
             minLength: {
               value: 2,
               message: '2글자 이상 입력하세요',
+            },
+            pattern: {
+              value: /^[^\d]*$/, // 숫자는 포함할수 없음
+              message: '숫자는 입력할 수 없습니다.',
             },
           })} //register 호출 => 객체 반환
         />
