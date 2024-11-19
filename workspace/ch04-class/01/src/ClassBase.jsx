@@ -13,6 +13,12 @@ class ClickMe extends Component {
 
 class Parent extends Component {
   render() {
-    return <div></div>;
+    return (
+      <div>
+        <h1>01 클래스 컴포넌트</h1>
+        <ClickMe />
+      </div>
+    );
   }
 }
+export default Parent;
