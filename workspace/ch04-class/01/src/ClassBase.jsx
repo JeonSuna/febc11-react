@@ -12,7 +12,7 @@ class ClickMe extends Component {
     //부모 클래스의 생성자를 통해 this가 초기화 되므로 ,
     //super를 호출 해야(==component에 정의된 construct 호출) 자식 class에서 this를 사용할 수 있다.
     //super(props)를 호출 해야 자식 class에서 this.props를 사용할 수 있다.
-    super();
+    super(props);
     this.state = { count: props.level || 1 };
   }
 
