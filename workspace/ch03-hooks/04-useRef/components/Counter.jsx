@@ -21,7 +21,9 @@ function Counter({ children = '0' }) {
   };
   const handleReset = (event) => {
     countDispatch({ type: 'RESET', value: initCount });
+    stepElem.current.focus();
   };
+  const stepElem = useRef(null);
 
   return (
     <div id="counter">
@@ -31,6 +33,7 @@ function Counter({ children = '0' }) {
         style={{ width: '40px' }}
         defaultValue={step.current}
         onChange={(e) => (step.current = Number(e.target.value))}
+        ref={stepElem}
       />
       <Button color="red" onClick={handleDown}>
         -
