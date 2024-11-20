@@ -3,14 +3,11 @@ import PropTypes from 'prop-types';
 
 function TodoInput({ addItem }) {
   const [title, setTitle] = useState('');
-  const [count, setCount] = useState(4);
 
   function handleAdd() {
     if (title.trim() !== '') {
-      const item = { _id: count, title, done: false };
-      addItem(item);
+      addItem(title);
       setTitle('');
-      setCount(count + 1);
     }
   }
 

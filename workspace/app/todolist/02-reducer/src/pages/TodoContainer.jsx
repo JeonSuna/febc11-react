@@ -1,6 +1,7 @@
 import Todo from '@pages/Todo';
-import { produce } from 'immer';
-import { useState } from 'react';
+import TodoReducer from '@pages/TodoReducer';
+
+import { useReducer, useState } from 'react';
 
 function TodoContainer() {
   // 샘플 목록
@@ -10,31 +11,29 @@ function TodoContainer() {
     { _id: 3, title: '라면', done: true },
   ];
 
-  const [itemList, setItemList] = useState(sampleItemList);
+  const [itemList, itemListDispatch] = useReducer(TodoReducer, sampleItemList);
+  const [count, setCount] = useState(sampleItemList.length + 1);
 
-  const addItem = (item) => {
-    const newItemList = [...itemList, item];
-    setItemList(newItemList); //set 함수를 통한 상태관리
+  // const addItem = (item) => {
+  //   itemListDispatch({ type: 'ADD', value: item }); //set 함수를 통한 상태관리
+  // };
+  const addItem = (title) => {
+    itemListDispatch({
+      type: 'ADD',
+      value: { _id: count, title, done: false },
+    }); //set 함수를 통한 상태관리
+    setCount(count + 1);
   };
 
   //할일 완료/미완료 처리
   const toggleDone = (_id) => {
     // 데이터 갱신(상태 변경)
-    const newItemList = produce(itemList, (draft) => {
-      const item = draft.find((item) => item._id === _id);
-      item.done = !item.done;
-    });
-
-    setItemList(newItemList);
-
-    console.log('예전 itemList', itemList);
-    console.log('새로운 itemList', newItemList);
+    itemListDispatch({ type: 'TOGGLE', value: { _id } });
   };
 
   //할일 삭제
   function deleteItem(_id) {
-    const newItemList = itemList.filter((item) => item._id !== _id);
-    setItemList(newItemList);
+    itemListDispatch({ type: 'DELETE', value: { _id } });
   }
 
   return (
