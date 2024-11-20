@@ -15,13 +15,13 @@ function Counter({ children = '0' }) {
   const [step, setStep] = useState(1);
 
   const handleDown = () => {
-    setCount(count - step);
+    countDispatch({ type: 'DOWN', value: step });
   };
   const handleUp = () => {
-    setCount(count + step);
+    countDispatch({ type: 'UP', value: step });
   };
   const handleReset = (event) => {
-    setCount(initCount);
+    countDispatch({ type: 'RESET', value: initCount });
   };
 
   useEffect(() => {
