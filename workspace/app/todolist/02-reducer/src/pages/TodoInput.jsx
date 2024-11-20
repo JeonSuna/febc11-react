@@ -1,13 +1,15 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
 function TodoInput({ addItem }) {
   const [title, setTitle] = useState('');
 
+  const titleElem = useRef(null);
   function handleAdd() {
     if (title.trim() !== '') {
       addItem(title);
       setTitle('');
+      titleElem.current.focus();
     }
   }
 
@@ -23,6 +25,7 @@ function TodoInput({ addItem }) {
         autoFocus
         onKeyUp={handleKeyUp}
         onChange={(event) => setTitle(event.target.value)}
+        ref={titleElem}
       />
       <button type="button" onClick={handleAdd}>
         추가

@@ -1,7 +1,7 @@
 import Todo from '@pages/Todo';
 import TodoReducer from '@pages/TodoReducer';
 
-import { useReducer, useState } from 'react';
+import { useReducer, useRef, useState } from 'react';
 
 function TodoContainer() {
   // 샘플 목록
@@ -12,7 +12,9 @@ function TodoContainer() {
   ];
 
   const [itemList, itemListDispatch] = useReducer(TodoReducer, sampleItemList);
-  const [count, setCount] = useState(sampleItemList.length + 1);
+  // const [count, setCount] = useState(sampleItemList.length + 1);
+  //useRef수정
+  const count = useRef(sampleItemList.length + 1);
 
   // const addItem = (item) => {
   //   itemListDispatch({ type: 'ADD', value: item }); //set 함수를 통한 상태관리
@@ -20,9 +22,10 @@ function TodoContainer() {
   const addItem = (title) => {
     itemListDispatch({
       type: 'ADD',
-      value: { _id: count, title, done: false },
+      value: { _id: count.current, title, done: false },
     }); //set 함수를 통한 상태관리
-    setCount(count + 1);
+    count.current += 1;
+    console.log(count.current);
   };
 
   //할일 완료/미완료 처리
