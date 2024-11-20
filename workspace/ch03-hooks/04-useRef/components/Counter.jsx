@@ -23,6 +23,7 @@ function Counter({ children = '0' }) {
     countDispatch({ type: 'RESET', value: initCount });
     stepElem.current.focus();
   };
+
   const stepElem = useRef(null);
 
   return (
