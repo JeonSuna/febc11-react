@@ -1,7 +1,11 @@
 import PropTypes from 'prop-types';
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 
-const Product = memo(function Product({ name, price, mainImage, content }) {
+const Product = memo(function Product({
+  product: { name, price, mainImage, content },
+}) {
+  console.log('prodcut rendering');
+  //console.log가 출력 ==> memo를 해도 product가 계속 변해서 memo가 안먹히는 중
   // function Product({ name, price, mainImage, content }) {
   return (
     <>
@@ -19,10 +23,12 @@ const Product = memo(function Product({ name, price, mainImage, content }) {
 });
 
 Product.propTypes = {
-  name: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  mainImage: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
+  product: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    mainImage: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+  }),
 };
 export default Product;
 //App은 리렌더링이 되고 자식인 Product는 리렌더링이 안되어야함 => useMemo!!
