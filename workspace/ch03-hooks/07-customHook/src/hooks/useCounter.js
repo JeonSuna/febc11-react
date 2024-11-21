@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function useCounter({ initCount }) {
+function useCounter(initCount) {
   const [count, setCount] = useState(initCount);
 
   const handleDown = (num) => {
