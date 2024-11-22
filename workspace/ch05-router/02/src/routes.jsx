@@ -1,7 +1,7 @@
 import Page1 from './Page1';
 import Page2 from './Page2';
 import Home from './Home';
-import { createBrowserRouter, Outlet } from 'react-router-dom';
+import { createBrowserRouter, Navigate, Outlet } from 'react-router-dom';
 import Layout from './Layout';
 
 const router = createBrowserRouter(
@@ -16,7 +16,8 @@ const router = createBrowserRouter(
       path: '/',
       element: <Layout />,
       children: [
-        { index: true, element: <Home /> },
+        { index: true, element: <Navigate to="/home" /> },
+        { path: 'home', element: <Home /> },
         {
           path: 'page1',
           element: <Page1 />,
