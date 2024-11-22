@@ -22,7 +22,7 @@ function useFetch(fetchParams) {
       console.log(response);
       console.log(jsonData);
       if (jsonData.ok) {
-        setData(jsonData.items);
+        setData(jsonData);
         setError(null);
       } else {
         throw new Error(jsonData.error.message);
