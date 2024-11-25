@@ -38,7 +38,6 @@ function useFetch(fetchParams) {
     } finally {
       //무조건 호출되어야하는 코드는 finally에 넣어준다
       setIsLoading(false);
-      console.log('디버깅');
     }
   };
 

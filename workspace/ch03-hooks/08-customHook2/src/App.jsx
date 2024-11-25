@@ -29,7 +29,7 @@ function App() {
         message:
           '일시적인 문제로 인헤 작업 처리에 실패했습니다. 잠시후 다시 요청해 주시기 바랍니다',
       });
-      setData(null);
+      setData(null); //err시 이전에 성공적으로 로드된 데이터가 남아있으면 사용자가 혼란스러울 수 있어서 초기화함
     } finally {
       //무조건 호출되어야하는 코드는 finally에 넣어준다
       setIsLoadding(false);
@@ -39,7 +39,6 @@ function App() {
 
   useEffect(() => {
     const fetchParams = { url: '/todolist?delay=3000' };
-    console.log('dsfs');
     fetchTodo(fetchParams);
   }, []);
 

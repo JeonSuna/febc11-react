@@ -6,12 +6,6 @@ import Layout from './Layout';
 
 const router = createBrowserRouter(
   [
-    // {
-    //   path: '/',
-    //   element: <Home />,
-    // },
-    // { path: '/page1', element: <Page1 /> },
-    // { path: '/page2', element: <Page2 /> },
     {
       path: '/',
       element: <Layout />,
