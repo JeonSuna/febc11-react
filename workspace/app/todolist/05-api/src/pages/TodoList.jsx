@@ -1,27 +1,31 @@
 import TodoListItem from '@pages/TodoListItem';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import useFetch from '../../hooks/useFetch';
 
-const dummyData = {
-  items: [
-    {
-      _id: 1,
-      title: '잠자기',
-    },
-    {
-      _id: 2,
-      title: '자바스크립트 복습',
-      done: true,
-    },
-  ],
-};
+// const dummyData = {
+//   items: [
+//     {
+//       _id: 1,
+//       title: '잠자기',
+//     },
+//     {
+//       _id: 2,
+//       title: '자바스크립트 복습',
+//       done: true,
+//     },
+//   ],
+// };
 
 function TodoList() {
-  const [data, setData] = useState();
+  // const [data, setData] = useState();
 
-  useEffect(() => {
-    setData(dummyData);
-  }, []); //마운트된 후 한번만 호출한다
+  // useEffect(() => {
+  //   setData(dummyData);
+  // }, []); //마운트된 후 한번만 호출한다
+
+  // API 서버에서 목록 조회
+  const { data } = useFetch({ url: '/todolist' });
 
   // 삭제 작업
   const handleDelete = (_id) => {

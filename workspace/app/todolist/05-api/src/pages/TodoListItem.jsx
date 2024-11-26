@@ -18,7 +18,7 @@ function TodoListItem({ item, handleDelete }) {
         {item.done ? <s>{item.title}</s> : item.title}
       </Link>
       <button
-        to="/list"
+        type="button"
         onClick={() => {
           handleDelete(item._id);
         }}
