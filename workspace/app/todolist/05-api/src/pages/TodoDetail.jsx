@@ -1,5 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Link, Outlet, useOutletContext, useParams } from 'react-router-dom';
+import {
+  Link,
+  Outlet,
+  useNavigate,
+  useOutletContext,
+  useParams,
+} from 'react-router-dom';
 import useAxios from '../../hooks/useAxios';
 import useAxiosInstance from '../../hooks/useAxiosInstance';
 
@@ -7,6 +13,8 @@ function TodoDetail() {
   const { _id } = useParams();
   console.log(_id);
   // const { data } = useAxios({ url: `/todolist/${_id}` });
+
+  const navigate = useNavigate(); //목록 8 하고 목록 누르면 바로 이전페이지로 돌아가도록 함
   const [data, setData] = useState();
 
   const axios = useAxiosInstance();
@@ -34,7 +42,9 @@ function TodoDetail() {
             <div>수정일 : {data.item.updatedAt}</div>
 
             <Link to="./edit">수정</Link>
-            <Link to="/list">목록</Link>
+            <button type="button" onClick={() => navigate(-1)}>
+              목록
+            </button>
           </div>
 
           <Outlet context={{ item: data.item, refetch: fetchDetail }} />
