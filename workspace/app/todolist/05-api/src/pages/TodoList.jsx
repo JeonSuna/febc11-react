@@ -33,6 +33,7 @@ function TodoList() {
   // 컴포넌트 마운트 직후와 삭제 후에 목록 조회를 해야 하므로 함수로 만듬
   const fetchList = async () => {
     const res = await axios.get('/todolist', { params });
+    console.log(res);
     setData(res.data);
   };
 
