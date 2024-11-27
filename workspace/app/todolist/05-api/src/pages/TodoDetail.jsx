@@ -1,34 +1,24 @@
 import { useEffect, useState } from 'react';
 import { Link, Outlet, useOutletContext, useParams } from 'react-router-dom';
 import useAxios from '../../hooks/useAxios';
-
-// const dummyData = {
-//   item: {
-//     _id: 5,
-//     title: 'Javascript 공부',
-//     content: '열심히 하자',
-//     done: false,
-//     createdAt: '2024.11.21 16:49:00',
-//     updatedAt: '2024.11.21 16:49:00',
-//   },
-// };
+import useAxiosInstance from '../../hooks/useAxiosInstance';
 
 function TodoDetail() {
-  // URL의 파라미터 추출
-  // 라우터에 'list/:_id'로 등록된 컴포넌트가 호출되는 경우
-  // URL이 list/3일 때 useParams()는 { _id: 3 }을 반환
   const { _id } = useParams();
   console.log(_id);
+  // const { data } = useAxios({ url: `/todolist/${_id}` });
+  const [data, setData] = useState();
 
-  // const [data, setData] = useState();
+  const axios = useAxiosInstance();
 
-  // useEffect(() => {
-  //   // TODO: API 서버 통신
+  const fetchDetail = async () => {
+    const res = await axios.get(`/todolist/${_id}`);
+    setData(res.data);
+  };
 
-  //   setData(dummyData);
-  // }, []);
-
-  const { data } = useAxios({ url: `/todolist/${_id}` });
+  useEffect(() => {
+    fetchDetail();
+  }, []); // 마운트 될 때 한번만 호출
 
   return (
     <div id="main">
@@ -47,7 +37,7 @@ function TodoDetail() {
             <Link to="/list">목록</Link>
           </div>
 
-          <Outlet context={{ item: data.item }} />
+          <Outlet context={{ item: data.item, refetch: fetchDetail }} />
         </>
       )}
     </div>

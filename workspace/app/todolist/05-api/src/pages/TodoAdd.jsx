@@ -17,10 +17,10 @@ function TodoAdd() {
 
     const timer = setTimeout(() => {
       xhr.abort(); //중간에 요청을 취소하는 함수
-    }, 2000);
+    }, 2000); // 2초안에 응답이 도착하지 않으면 abot 함수를 호출함
 
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://todo-api.fesp.shop/api/todolist?delay=1000000');
+    xhr.open('POST', 'https://todo-api.fesp.shop/api/todolist');
     xhr.setRequestHeader('Content-Type', 'application/json');
 
     xhr.responseType = 'json'; //xhr에 response에 저장되는 응답 데이터가 JSON.parse() 결과로 저장됨
