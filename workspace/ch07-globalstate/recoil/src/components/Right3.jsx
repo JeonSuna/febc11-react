@@ -13,7 +13,7 @@ function Right3() {
   //   setCount(count + step);
   // };
 
-  //setter 사용(구독하지 않음)
+  //setter 사용 - atom을 변경
   const setCount = useSetRecoilState(counterState);
   const countUp = (step) => {
     setCount((count) => count + step);
