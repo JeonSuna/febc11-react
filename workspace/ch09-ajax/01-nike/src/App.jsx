@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import Product from './Product';
 import Shipping from './Shipping';
 import { DotLoader } from 'react-spinners';
+import { ToastContainer, toast } from 'react-toastify';
 
 function App() {
   console.log('App 렌더링.');
