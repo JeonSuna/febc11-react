@@ -42,7 +42,7 @@ function TodoEdit() {
     },
     onSuccess: () => {
       alert('할 일이 수정되었습니다');
-      queryClient.invalidateQueries(['todolist', item._id]); //refetch를 대체한다
+      queryClient.invalidateQueries({ queryKey: ['todolist', item._id] }); //refetch를 대체한다
       //React Query에서 queryKey는 캐싱된 데이터를 식별하는 고유한 키 역할을 하며, 모든 컴포넌트에서 공유됨
       //할 일 목록으로 이동
       navigate(-1); // 상세페이지로 넘어가면서 todoDetail의 쿼리키 캐시를 무효화함

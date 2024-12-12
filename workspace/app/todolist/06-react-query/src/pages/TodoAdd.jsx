@@ -28,7 +28,7 @@ function TodoAdd() {
     onSuccess: (res) => {
       alert('할일이 추가되었습니다');
       //지정한 키의 쿼리 캐시를 무효화
-      queryClient.invalidateQueries(['todolist']);
+      queryClient.invalidateQueries({ queryKey: 'todolist' });
       //할 일 목록으로 이동
       navigate(-1);
     },
