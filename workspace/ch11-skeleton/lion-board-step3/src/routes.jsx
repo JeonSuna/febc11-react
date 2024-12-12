@@ -5,7 +5,7 @@ import List from '@pages/board/List';
 import New from '@pages/board/New';
 import MainPage from '@pages/index';
 import Login from '@pages/user/Login';
-import Signup from '@pages/user/SignUp';
+import Signup from '@pages/user/Signup';
 import { createBrowserRouter } from 'react-router-dom';
 
 const router = createBrowserRouter(
